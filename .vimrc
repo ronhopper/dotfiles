@@ -62,6 +62,10 @@ augroup END
 " Make omnicomplete a bit easier
 imap <Leader>o <C-x><C-o>
 
+" visual shifting
+vnoremap < <gv
+vnoremap > >gv
+
 " Make ',e' (in normal mode) give a prompt for opening files
 " in the same dir as the current buffer's file.
 cnoremap %% <C-R>=expand("%:h")<cr>/
