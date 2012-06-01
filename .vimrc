@@ -77,9 +77,12 @@ map <leader>k :!mkdir %%
 function RunSpec()
   let specfile = expand('%')
   if stridx(specfile, '_spec.rb') == -1
-    let specfile = 'spec/**/' . substitute(join(split(specfile, '/')[2:], '/'), '.rb', '_spec.rb', '')
+    let name_parts = split(specfile, '/')
+    let name_parts = name_parts[2:-2] + name_parts[-1:]
+    let stripped_name = join(name_parts, '/')
+    let specfile = 'spec/**/' . substitute(stripped_name, '.rb', '_spec.rb', '')
   endif
-  execute '!bundle exec rspec ' . specfile
+  execute '!echo "bundle exec rspec ' . specfile . '"; bundle exec rspec ' . specfile
 endfunction
 map ; :w\|call RunSpec()<cr>
 
