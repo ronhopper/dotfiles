@@ -74,3 +74,12 @@ map <leader>a :tabe %%
 map <leader>n :Rename %%
 map <leader>k :!mkdir %%
 
+function RunSpec()
+  let specfile = expand('%')
+  if stridx(specfile, '_spec.rb') == -1
+    let specfile = 'spec/**/' . substitute(join(split(specfile, '/')[2:], '/'), '.rb', '_spec.rb', '')
+  endif
+  execute '!bundle exec rspec ' . specfile
+endfunction
+map ; :w\|call RunSpec()<cr>
+
