@@ -82,7 +82,8 @@ function RunSpec()
     let stripped_name = join(name_parts, '/')
     let specfile = 'spec/**/' . substitute(stripped_name, '.rb', '_spec.rb', '')
   endif
-  execute '!echo "bundle exec rspec ' . specfile . '"; bundle exec rspec ' . specfile
+  let be = "bundle exec "
+  execute '!echo "' . be . 'rspec ' . specfile . '"; ' . be . 'rspec ' . specfile
 endfunction
 map ; :w\|call RunSpec()<cr>
 
