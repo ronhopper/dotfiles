@@ -49,3 +49,6 @@
 [github]
   user = ronhopper
 
+[push]
+  default = simple
+
